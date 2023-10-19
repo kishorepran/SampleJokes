@@ -29,13 +29,13 @@ on:
 jobs:
   greet:
     runs-on: ubuntu-latest
-
+    environment: ${{ github.event.inputs.environment }}
     steps:
     - name: Send greeting
       run: echo "${{ github.event.inputs.message }} ${{ fromJSON('["", "🥳"]')[github.event.inputs.use-emoji == 'true'] }} ${{ github.event.inputs.name }}"
     - name: Check Environment Variable
       run: |
-        echo "My key is ${{ environment.TESTFLIGHT_KEY }}"
+        echo "My key is ${{ vars.TESTFLIGHT_KEY }}"
          echo "Another key is $TESTFLIGHT_KEY"
     - name: Print environment name
       run: |
