@@ -29,6 +29,7 @@ on:
 jobs:
   greet:
     runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment }}
     steps:
     - name: Send greeting
       run: echo "${{ github.event.inputs.message }} ${{ fromJSON('["", "🥳"]')[github.event.inputs.use-emoji == 'true'] }} ${{ github.event.inputs.name }}"
@@ -37,8 +38,6 @@ jobs:
         echo "My key is ${{ vars.TESTFLIGHT_KEY }}"
         echo "My env is  is ${{ github.event.inputs.environment }}"
         echo "Another key is $TESTFLIGHT_KEY"
-      env:
-          TESTFLIGHT_KEY: ${{ vars.TESTFLIGHT_KEY }}
     - name: Print environment name
       run: |
         printenv
